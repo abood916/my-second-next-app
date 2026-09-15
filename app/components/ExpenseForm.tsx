@@ -116,25 +116,26 @@ onAddExpense({
 
     
     return (
-    <div className="px-6 pb-6 mt-4">
+    <div className="px-6 pb-6 mt-4 bg-white rounded-2xl mr-6">
+        <h2 className="font-bold py-3">Add an expense</h2>
         <form action="" onSubmit={handleSubmit} className="max-w-xl space-y-4">
 
             <div className="flex flex-col gap-1">
                 <label htmlFor="t" className="text-sm font-medium">Title</label>
                 <input type="text"
-                id="t" placeholder="Title..." 
+                id="t" placeholder="e.g. Lunch" 
                 value={formData.title} 
                 onChange={(e) => setFormData({...formData, title: e.target.value})}
                 className="w-full rounded-md border border-gray-400 px-2 py-1
                 text-sm focus:outline-none"/>
-                {error.title && <p>{error.title}</p>}
+                {error.title && <p className="text-sm text-red-500">{error.title}</p>}
                 
             </div>
            
             <div className="flex flex-col gap-1">
                 <label htmlFor="a" className="text-sm font-medium">Amount</label>
                 <input type="number"
-                placeholder="Amount..."  
+                placeholder="$ 0.00"  
                 id="a" 
                 value={formData.amount}
                 onChange={(e) => setFormData({...formData, amount: e.target.value })}
@@ -170,7 +171,7 @@ onAddExpense({
 
             <div className="flex flex-col gap-1">
                 <label htmlFor="desc" className="text-sm font-medium">Description</label>
-                <textarea id="desc" placeholder="Description..."
+                <textarea id="desc" placeholder="Required note"
                 value={formData.description}
                 onChange={(e) => setFormData({...formData, description: e.target.value})}
                 className="w-full min-h-24 rounded-md border border-gray-400 px-3 py-2 text-sm
@@ -181,9 +182,9 @@ onAddExpense({
             
 
             <button type="submit"
-            className="w-64 px-3 py-2 border border-gray-400 rounded-md
-            hover:bg-gray-200 text-sm cursor-pointer
-            font-medium transition">{expenseToEdit ? "Update Expense" : "Add Expense"}</button>
+            className="w-full px-3 py-2 border border-white rounded-md
+            hover:bg-blue-900 text-sm cursor-pointer bg-blue-800 
+            font-bold transition text-white">{expenseToEdit ? "Update Expense" : "Add Expense"}</button>
         </form>
         </div>
         

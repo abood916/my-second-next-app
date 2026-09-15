@@ -2,10 +2,10 @@
 "use client"
 
 import Header from "./components/Header";
-import SideBar from "./components/SideBar";
-import ExpenseForm from "./components/ExpenseForm";
+// import SideBar from "./components/SideBar";
 import Dashboard from "./components/Dashboard";
 import { useState, useEffect } from "react";
+import SpendingByCategory from "./components/SpendingByCategory";
 
 type Expense = {
   id: number
@@ -51,7 +51,7 @@ useEffect(() => {
   localStorage.setItem("expenses", JSON.stringify(expenses));
 }, [expenses])
 
-const [darkMode, setDarkMode] = useState(false);
+// const [darkMode, setDarkMode] = useState(false);
 
 const [editingId, setEditingId] = useState<number | null>(null);
 
@@ -91,27 +91,23 @@ const expenseToEdit = expenses.find(
 
   return (
  
-    <div className={darkMode ? "dark bg-gray-900 text-white min-h-screen" 
-    : "bg-white text-black min-h-screen"}>
-    <Header onToogleDarkMode = {() => setDarkMode(!darkMode)} />
+    <div className="bg-gray-100 text-black min-h-screen">
+    <Header />
 
     <div className="flex">
-        <SideBar />
+        {/* <SideBar /> */}
 
         <main className="flex-1 px-3">
             <Dashboard 
             expenses={expenses} 
-            darkMode={darkMode}
+            // darkMode={darkMode}
             onEdit={handleEdit}
             onDelete={handleDeleteExpense}
+            onAddExpense={handleAddExpense}
+            expenseToEdit={expenseToEdit}
+            onUpdateExpense={handleUpdateExpense}
             />
-
-
-            <ExpenseForm
-              onAddExpense={handleAddExpense}
-              expenseToEdit={expenseToEdit}
-              onUpdateExpense={handleUpdateExpense}
-/>
+            <SpendingByCategory expenses={expenses} />
         </main>
     </div>
 </div>
