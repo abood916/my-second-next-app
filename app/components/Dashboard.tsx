@@ -40,7 +40,7 @@ export default function Dashboard ({
     return (
         <div>
             <StatsCards expenses={expenses}/>
-            <div className="flex gap-4">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                 <SearchBar onSearch={setSearch}/>
                 <ExpensesFilters onFilter={setCategory} />  
             </div>

@@ -40,7 +40,7 @@ const borderLiftColor = {
 }
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-6">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 px-3 sm:px-4 lg:px-6">
             {expenses.map((expense) => (
                 <div
                     key={expense.id}

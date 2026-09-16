@@ -35,7 +35,7 @@ export default function SpendingByCategory({
     const maxAmount = Math.max(...Object.values(categoryTotals));
 
     return (
-        <div className="mt-4 mx-6 p-5 bg-white rounded-2xl border border-gray-200">
+        <div className="mt-4 mx-3 sm:mx-4 lg:mx-6 p-4 lg:p-5 bg-white rounded-2xl border border-gray-200">
 
             <h2 className="text-lg font-semibold mb-5">
                 Spending by category
@@ -46,7 +46,7 @@ export default function SpendingByCategory({
 
                 return (
                     <div key={category} className="flex items-center gap-3 mb-3">
-                        <p className="w-28 text-sm font-medium">
+                        <p className="w-20 sm:w-24 lg:w-28 text-sm font-medium">
                             {category}
                         </p>
 

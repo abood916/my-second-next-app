@@ -116,7 +116,7 @@ onAddExpense({
 
     
     return (
-    <div className="px-6 pb-6 mt-4 bg-white rounded-2xl mr-6">
+    <div className="px-3 sm:px-4 lg:px-6 pb-6 mt-4 bg-white rounded-2xl mr-6">
         <h2 className="font-bold py-3">Add an expense</h2>
         <form action="" onSubmit={handleSubmit} className="max-w-xl space-y-4">
 
