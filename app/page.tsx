@@ -1,116 +1,29 @@
 
-"use client"
+import Navbar from "./components/Navbar"
+import Hero from "./components/Hero" 
+import StepCard from "./components/StepCard"
+import CTA from "./components/CTA"
+import Footer from "./components/Footer"
 
-import Header from "./components/Header";
-// import SideBar from "./components/SideBar";
-import Dashboard from "./components/Dashboard";
-import { useState, useEffect } from "react";
-import SpendingByCategory from "./components/SpendingByCategory";
-
-type Expense = {
-  id: number
-  title: string,
-  amount: number,
-  category: string,
-  date: string,
-  description: string,
-}
-
-export default function Home() {
-  const [expenses, setExpenses] = useState([
-    {
-        id: 1,
-        title: "Groceries",
-        amount: 50,
-        category: "Food",
-        date: "7-8-2026",
-        description: "Weekly groceries"
-    },
-
-    {
-        id: 2,
-        title: "Taxi",
-        amount: 15,
-        category: "Transport",
-        date: "6-8-2026",
-        description: "Trip to work"
-    }, 
-]);
-
-
-
-useEffect(() => {
-  const savedExpenses = localStorage.getItem("expenses");
-
-  if(savedExpenses) {
-    setExpenses(JSON.parse(savedExpenses));
-  }
-}, []);               
-
-useEffect(() => {
-  localStorage.setItem("expenses", JSON.stringify(expenses));
-}, [expenses])
-
-// const [darkMode, setDarkMode] = useState(false);
-
-const [editingId, setEditingId] = useState<number | null>(null);
-
-
-const handleAddExpense = (newExpense: Omit<Expense, "id">) => { 
-  const expenseWithId = {
-        id: Date.now(),
-        ...newExpense,
-    };
-    
-  setExpenses([...expenses, expenseWithId])
-};
-
-const handleEdit = (id: number) => {
-    setEditingId(id);
-};
-
-const handleUpdateExpense = (updatedExpense: Expense) => {
-    setExpenses(
-        expenses.map((expense) =>
-            expense.id === updatedExpense.id
-                ? updatedExpense
-                : expense
-        )
-    );
-};
-
-const handleDeleteExpense = (id: number) => {
-  setExpenses (
-    expenses.filter((expense) => expense.id !== id)
-  );
-};
-
-const expenseToEdit = expenses.find(
-    (expense) => expense.id === editingId
-);
-
+export default function LandingPage () {
   return (
- 
-    <div className="bg-gray-100 text-black min-h-screen">
-    <Header />
+  <div className="relative min-h-screen overflow-hidden bg-slate-50">
 
-    <div className="flex">
-        {/* <SideBar /> */}
+    <div className="pointer-events-none absolute -top-16 -left-16 h-64 w-64 sm:h-80 sm:w-80 lg:h-96 lg:w-96 rounded-full bg-teal-300 blur-3xl"></div>
 
-        <main className="flex-1 px-3 sm:px-4 lg:px-6">
-            <Dashboard 
-            expenses={expenses} 
-            // darkMode={darkMode}
-            onEdit={handleEdit}
-            onDelete={handleDeleteExpense}
-            onAddExpense={handleAddExpense}
-            expenseToEdit={expenseToEdit}
-            onUpdateExpense={handleUpdateExpense}
-            />
-            <SpendingByCategory expenses={expenses} />
-        </main>
-    </div>
-</div>
-  )
+    <div className="pointer-events-none absolute top-14 -right-32 h-64 w-64 sm:h-80 sm:w-80 lg:h-96 lg:w-96 rounded-full bg-teal-300 blur-3xl"></div>
+    <Navbar />
 
+    <main>
+      <Hero />
+
+      <StepCard />
+
+      <CTA />
+    </main>
+
+    <Footer />
+
+  </div>
+)
 }
