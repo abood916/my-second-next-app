@@ -8,7 +8,7 @@ import { useState } from "react";
 import ExpenseForm from "./ExpenseForm";
 
 type Expense = {
-    id: number,
+    id: string | number,
     title: string,
     amount: number,
     category: string,
@@ -26,17 +26,18 @@ export default function Dashboard ({
 
     }: {
         expenses: Expense[],
-        onEdit: (id: number) => void
-        onDelete: (id: number) => void 
+        onEdit: (id: string | number) => void
+        onDelete: (id: string | number) => void 
         onAddExpense: (newExpense: Omit<Expense, "id">) => void,
         expenseToEdit?: Expense,
         onUpdateExpense: (updatedExpense: Expense) => void,
         }) {
      const [search, setSearch] = useState("");
      const [category, setCategory] = useState("All")
-     const filteredExpenses = expenses.filter((expense) => 
-    expense.title.toLowerCase().includes(search.toLowerCase()) &&
-    (category === "All" || expense.category === category))
+     const filteredExpenses = expenses.filter((expense) =>
+  (expense.title || "").toLowerCase().includes((search || "").toLowerCase()) &&
+  (category === "All" || expense.category === category)
+);
     return (
         <div>
             <StatsCards expenses={expenses}/>

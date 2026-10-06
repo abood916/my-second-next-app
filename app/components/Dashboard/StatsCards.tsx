@@ -9,19 +9,22 @@ type Expense = {
 
 export default function StatsCards({expenses}: {expenses: Expense[]}) {
 
-    const totalExpenses = expenses.reduce((total, expense) => 
-    total + expense.amount, 0);
+    const totalExpenses = expenses.reduce((sum, item) => {
+  const amount = Number(item.amount) || 0;
+  return sum + amount;
+}, 0);
 
     const numberOfExpeses = expenses.length;
-    const highestExpense = Math.max(
-        ...expenses.map((expense) => expense.amount)
-    )
+    const highestExpense = expenses.reduce((max, item) => {
+  const amount = Number(item.amount) || 0;
+  return amount > max ? amount : max;
+}, 0);
 
     return (
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 p-3 md:p-6">
             <div className="rounded-2xl border border-gray-200 border-t-3 border-t-purple-500 p-5 bg-white">
                 <h2 className="text-sm font-medium text-gray-500">Total Expenses</h2>
-                <p className="mt-2 text-sm font-bold">{totalExpenses}</p>
+                <p className="mt-2 text-sm font-bold">${totalExpenses || 0}</p>
             </div>
 
         <div className="rounded-2xl p-5 bg-white border border-gray-200 border-t-3 border-t-green-500">
@@ -36,4 +39,4 @@ export default function StatsCards({expenses}: {expenses: Expense[]}) {
         </div>
 
     )
-}
+}   

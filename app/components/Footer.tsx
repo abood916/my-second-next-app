@@ -50,7 +50,7 @@ export default function Footer() {
 
         <hr className="w-full border-slate-100" />
 
-        <div>
+        <div> 
           <p className="text-xs text-slate-400">
             &copy; 2026 ExpenseFlow Inc.
           </p>

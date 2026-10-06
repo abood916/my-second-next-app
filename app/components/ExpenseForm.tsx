@@ -17,7 +17,7 @@ export default function ExpenseForm ({
     }) => void;
 
     onUpdateExpense: (updatedExpense: {
-    id: number;
+    id: string | number;
     title: string;
     amount: number;
     category: string;
@@ -26,7 +26,7 @@ export default function ExpenseForm ({
 }) => void;
 
     expenseToEdit?: {
-        id: number;
+        id: string | number;
         title: string;
         amount: number;
         category: string;
@@ -34,7 +34,7 @@ export default function ExpenseForm ({
         description: string;
     };
 }) {
-    const handleSubmit = (e: React.FormEvent) => {
+    const handleSubmit = (e: any) => {
         e.preventDefault();
         if(!formData.title) {
             setError({...error, title: "Title Is Required"})

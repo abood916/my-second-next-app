@@ -1,5 +1,4 @@
-import Link from "next/link"
-
+import { useRouter } from "next/navigation";
 import { Poppins } from "next/font/google"
 
 const poppins = Poppins ({
@@ -9,6 +8,13 @@ const poppins = Poppins ({
     
 
 export default function Header() {
+
+    const router = useRouter();
+
+    const handleLogout = () => {
+        localStorage.removeItem("token");
+        router.push("/Login");
+    };
 
       
     return (
@@ -20,12 +26,12 @@ export default function Header() {
                 >Keep an eye on where your money goes</p>
             </div> 
             
-            <div className="flex gap-2 md:gap-4">
-                <Link href="/Login"
-                className="px-4 py-2 text-sm font-medium text-slate-600 hover:text-slate-900 transition-colors">Login</Link >
-                <Link href="/register"
-                className="px-4 py-2 text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 rounded-lg shadow-sm hover:shadow transition-all">Create Account</Link >
-            </div>
+            <button 
+                onClick={handleLogout}
+                className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded-lg text-sm font-medium transition"
+            >
+                Logout
+            </button>
         </div>
         
 

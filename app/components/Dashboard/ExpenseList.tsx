@@ -1,7 +1,7 @@
 
 
 type Expenses = {
-    id: number,
+    id: string | number,
     title: string,
     amount: number,
     category: string,
@@ -16,8 +16,8 @@ export default function ExpenseList({
     onDelete,    
 }: {
         expenses: Expenses[],
-        onEdit: (id: number) => void
-        onDelete: (id: number) => void
+        onEdit: (id:string | number) => void
+        onDelete: (id: string | number) => void
         
     }) {
 
